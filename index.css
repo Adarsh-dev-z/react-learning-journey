@@ -1,0 +1,94 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo {
+    width: 160px;
+}
+
+.nav-items ul {
+    display: flex;
+    padding: 0px 10px;
+    font-size: 22px;
+    list-style-type: none;
+
+}
+
+.nav-items li {
+    padding: 20px;
+}
+
+.res-card{
+    margin: 15px;
+    width: 200px;
+    padding: 5px;
+
+}
+
+.res-card:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.search{
+    padding: 10px;
+}
+
+.res-image{
+    width: 100%;
+    height: 130px;
+}
+
+.res-container{
+    display: flex;
+    flex-wrap: wrap;    
+}
+
+.filter-btn{
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.shimmer-card{
+    width: 200px;
+    height: 400px;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+.login{
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.filter{
+    display: flex;
+}
+
+
+/* In a separate CSS file (e.g., styles.css) or in a <style> block */
+
+.user-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    max-width: 300px;
+    text-align: center;
+}
+
+.user-card h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 8px 0;
+}
