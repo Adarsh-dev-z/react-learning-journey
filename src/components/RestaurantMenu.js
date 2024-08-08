@@ -5,23 +5,11 @@ import { MENU_API } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  // const [resInfo, setResInfo] = useState(null);
 
   const {resId} = useParams();
 
   const resInfo = useRestaurantMenu(resId);
-  // useEffect(() => {
-  //   fetchMenu();
-  // }, []);
-
-  // const fetchMenu = async () => {
-  //   const data = await fetch(
-  //     `${MENU_API}${resId}&catalog_qa=undefined&submitAction=ENTER`
-  //   );
-  //   const json = await data.json();
-  //   console.log(json);
-  //   setResInfo(json);
-  // };
+ 
 
   if (resInfo === null) {
     return <Shimmer />;

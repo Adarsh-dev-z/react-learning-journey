@@ -2,6 +2,9 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router-dom"
+import useOnlinStatus from "./useOnlineStatus";
+
+
 const Body = () => {
   const [listofRes, setResList] = useState([]);
   const [filteredListofRes, setFilteredResList] = useState([]);
@@ -25,21 +28,24 @@ const Body = () => {
     // console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
+  const onlineStatus = useOnlinStatus()
+  if(onlineStatus===false) return (<h1>Looks Like You Are Offline!! Please Check Your Interner Connection</h1>) 
+
   return listofRes.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex items-center justify-between">
+        <div className="search m-2 p-2">
           <input
             type="text"
-            className="search-box"
+            className="search-box border border-solid border-gray-400 p-2 "
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           ></input>
-          <button
+          <button className="p-2 bg-orange-200 m-4 rounded-sm"
             onClick={() => {
               console.log(searchText);
               const filteredRes = listofRes.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -49,8 +55,9 @@ const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
+       <div>
+       <button
+          className="p-2 bg-orange-200 rounded-sm m-5"
           onClick={() => {
             const filteredList = listofRes.filter(
               (item) => item.info.avgRating > 4.4
@@ -60,9 +67,10 @@ const Body = () => {
         >
           Top rated restaurant
         </button>
+       </div>
       </div>
       {console.log("flr",filteredListofRes)}
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredListofRes.map((restaurant) => (
           <Link key={restaurant.info.id} to={`/restaurants/${restaurant.info.id}`}><RestaurantCard key={restaurant.info.id} resData={restaurant} /></Link>
         ))}
