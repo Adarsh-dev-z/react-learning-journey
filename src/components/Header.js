@@ -1,11 +1,17 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlinStatus from "./useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 
   let [btnNameReact, setBtnNameReact] = useState("Login")
+  const {loggedInUser}= useContext(UserContext);
+
+  const cartItems = useSelector((store)=> store.cart.items);
+  console.log("cart from rdx", cartItems)
 
   const onlineStatus = useOnlinStatus();
     return (
@@ -34,8 +40,14 @@ const Header = () => {
             <li className="mr-5">
               <Link to= "/contact">Contact</Link>
               </li>
-            <li className="mr-5">Cart</li>
+              
+            <li className="mr-5 font-bold text-xl">
+              <Link to="/cart">Cart ({cartItems.length}) Items</Link>
+              </li>
+
             <button className="login" onClick={()=>{ btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login")}}>{btnNameReact}</button>
+            <li className="mr-5 font-bold">{loggedInUser}</li>
+
           </ul>
         </div>
       </div>
